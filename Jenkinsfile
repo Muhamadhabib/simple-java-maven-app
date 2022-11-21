@@ -1,11 +1,11 @@
 node {  
     stage('Build') { 
-      withMaven(maven: 'mvn') {
+      withMaven {
         sh 'mvn -B -DskipTests clean package'
       }
     }
     stage('Test') { 
-      withMaven(maven: 'mvn') {
+      withMaven {
         sh 'mvn test'
       }
     }
