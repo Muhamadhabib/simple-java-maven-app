@@ -1,11 +1,11 @@
 node {  
     stage('Build') { 
-      withMaven(maven: 'maven-3', mavenLocalRepo: '.repository', mavenSettingsConfig: 'my-maven-settings') {
+      withMaven(maven: 'maven-3', mavenLocalRepo: '.repository') {
         sh 'mvn -B -DskipTests clean package'
       }
     }
     stage('Test') { 
-      withMaven(maven: 'maven-3', mavenLocalRepo: '.repository', mavenSettingsConfig: 'my-maven-settings') {
+      withMaven(maven: 'maven-3', mavenLocalRepo: '.repository') {
         sh 'mvn test'
       }
     }
