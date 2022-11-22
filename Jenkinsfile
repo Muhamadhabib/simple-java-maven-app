@@ -1,15 +1,18 @@
-node {  
-    stage('Build') { 
-      withMaven(maven: 'maven-3', mavenLocalRepo: '.repository') {
-        sh 'mvn -B -DskipTests clean package'
+agent {
+    docker {
+        image 'maven:3-alpine'
+        args '-v /root/.m2:/root/.m2'
+    }
+    node {  
+      stage('Build') { 
+        withMaven {
+          sh 'mvn -B -DskipTests clean package'
+        }
+      }
+      stage('Test') { 
+        withMaven {
+          sh 'mvn test'
+        }
       }
     }
-    stage('Test') { 
-      withMaven(maven: 'maven-3', mavenLocalRepo: '.repository') {
-        sh 'mvn test'
-      }
-    }
-    // stage('Deploy') { 
-    //     sh './jenkins/scripts/deliver.sh'
-    // }
 }
