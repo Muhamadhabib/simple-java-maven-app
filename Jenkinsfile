@@ -10,7 +10,7 @@ node {
       junit 'target/surefire-reports/*.xml'
     }
   }
-  withDockerContainer(args: '-p 3000:3000') {
+  withDockerContainer(args: '-p 3000:3000', image: 'cat:latest') {
     stage('Deliver') {
       checkout scm
       sh 'docker run --rm -v /var/jenkins_home/workspace/java-app/jenkins/scripts/deliver.sh'
