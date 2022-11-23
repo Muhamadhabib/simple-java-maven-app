@@ -3,7 +3,8 @@ agent {
         image 'maven:3-alpine'
         args '-v /root/.m2:/root/.m2'
     }
-    node {  
+}
+node {  
       stage('Build') { 
         sh 'mvn -B -DskipTests clean package'
       }
@@ -11,4 +12,3 @@ agent {
         sh 'mvn test'
       }
     }
-}
