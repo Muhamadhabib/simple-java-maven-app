@@ -11,7 +11,7 @@ node {
     }
     stage('Deliver') {
       checkout scm
-      sh 'docker run --rm -v /var/jenkins_home/workspace/java-app/jenkins/scripts/deliver.sh'
+      sh './jenkins/scripts/deliver.sh'
     }
   }
 }
