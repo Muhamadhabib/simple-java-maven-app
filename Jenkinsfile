@@ -2,7 +2,7 @@ node {
   withDockerContainer(args: '-v /root/.m2:/root/.m2', image: 'maven:3-alpine') {
     stage('Build') { 
       checkout scm
-      sh 'mvn -B -DskipTests clean package'
+      sh 'mvn -B -DskipTests clean package -Denforcer.skip=true'
     }
     stage('Test') {
       checkout scm
