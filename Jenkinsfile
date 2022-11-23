@@ -7,7 +7,9 @@ node {
       sh 'mvn test'
     }
   }
-  stage('Deliver') {
-    sh './home/Documents/dicoding/simple-java-maven-app/jenkins/scripts/deliver.sh'
+  withDockerContainer(args: '-p 3000:3000') {
+    stage('Deliver') {
+      sh './jenkins/scripts/deliver.sh'
+    }
   }
 }
