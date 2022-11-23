@@ -8,6 +8,6 @@ node {
     }
   }
   stage('Deliver') {
-    sh 'bash ./jenkins/scripts/deliver.sh'
+    sh './home/Documents/dicoding/simple-java-maven-app/jenkins/scripts/deliver.sh'
   }
 }
