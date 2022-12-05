@@ -12,6 +12,12 @@ node {
     stage('Deliver') {
       checkout scm
       sh './jenkins/scripts/deliver.sh'
+      sleep time: 1, unit: 'MINUTES'
+    }
+    stage('Manual Approval') {
+      input message: 'Lanjutkan ke tahap Deploy?'
+      checkout scm
+      sh './jenkins/scripts/deliver.sh'
     }
   }
 }
